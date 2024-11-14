@@ -9,6 +9,7 @@ gem "rails"
 gem "mongoid"
 gem "vite_rails"
 gem 'rack-cors'
+gem "tailwindcss-rails", "~> 3.0"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
