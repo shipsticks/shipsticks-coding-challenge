@@ -1,1 +1,15 @@
+<%= content_for :head do %>
+  <%= vite_javascript_tag 'home.tsx' %>
+
+  <!--
+    If using a TypeScript entrypoint file:
+      vite_typescript_tag 'application'
+
+    If using a .jsx or .tsx entrypoint, add the extension:
+      vite_javascript_tag 'application.jsx'
+
+    Visit the guide for more information: https://vite-ruby.netlify.app/guide/rails
+  -->
+<% end %>
+
 <%= content_tag(:div, '', id: 'root' ) %>
