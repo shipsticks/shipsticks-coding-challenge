@@ -1,6 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: p1
   name: MyString
   type: 
   length: 1
@@ -9,6 +10,7 @@ one:
   weight: 1
 
 two:
+  id: p2
   name: MyString
   type: 
   length: 1
