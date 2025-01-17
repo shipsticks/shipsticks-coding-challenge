@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :calculation_results
+  resources :product_types
   namespace :api do
     namespace :v1 do
       resources :products, except: :show
