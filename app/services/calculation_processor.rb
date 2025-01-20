@@ -11,7 +11,7 @@ class CalculationProcessor
   end
 
   def calculate
-    raise MissingProductError unless matched_product.present?
+    return nil unless matched_product.present?
 
     CalculationResult.find_or_create_by(
       product: matched_product,

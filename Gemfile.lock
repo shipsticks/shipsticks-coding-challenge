@@ -68,6 +68,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
+    base64 (0.2.0)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
@@ -90,8 +91,14 @@ GEM
       reline (>= 0.3.1)
     dry-cli (1.0.0)
     erubi (1.13.0)
+    fiber-storage (1.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    graphiql-rails (1.10.1)
+      railties
+    graphql (2.4.8)
+      base64
+      fiber-storage
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
@@ -225,6 +232,8 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
+  graphiql-rails
+  graphql
   mongoid
   puma (~> 5.0)
   rack-cors
