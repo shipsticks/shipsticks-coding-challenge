@@ -2,6 +2,8 @@
 
 module Types
   class CalculationResult < Types::BaseObject
+    field :id, ID, "The id", null: false
+
     field :length, Int, "The length value for the calculation.", null: false
     field :width, Int, "The width value for the calculation.", null: false
     field :height, Int, "The height value for the calculation.", null: false

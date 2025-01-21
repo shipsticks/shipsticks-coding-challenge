@@ -1,18 +1,24 @@
-export const CALCULATION_FROM_DIMENSIONS = /* GraphQL */ `
-  query calculationFromDimensions(
-    $length: Int
-    $width: Int
-    $height: Int
-    $weight: Int
-  ) {
-    calculation_from_dimensions(
-      length: $length
-      width: $width
-      height: $height
-      weight: $weight
+export const calculationFromDimensionsQuery = (length: number, width: number, height: number, weight: number) => (/* GraphQL */ `
+  {
+    calculationFromDimensions(
+      length: ${length}
+      width: ${width}
+      height: ${height}
+      weight: ${weight}
     ) {
-      data
-      name
+      id
+      product {
+        id
+        name
+        length
+        width
+        height
+        weight
+        productType {
+          id
+          name
+        }
+      }
     }
   }
-`;
+`);

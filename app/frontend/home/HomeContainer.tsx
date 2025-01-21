@@ -8,7 +8,7 @@ const HomeContainer: FC = () => {
   return (
     <div>
       <SearchModal />
-      <button onClick={handleOpen}>Open Modal</button>
+      <button className="inline-flex items-center gap-2 rounded-md bg-gray-700/50 m-11 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10" onClick={handleOpen}>Open Modal</button>
     </div>
   )
 };

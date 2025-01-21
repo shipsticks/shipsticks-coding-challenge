@@ -2,12 +2,20 @@ import axios from 'axios';
 import { FC } from 'react';
 import { create } from 'zustand';
 
-import { CALCULATION_FROM_DIMENSIONS } from './graphql/queries/calculationFromDimensions';
+import { calculationFromDimensionsQuery } from './graphql/queries/calculationFromDimensions';
 import HomeContainer from 'home/HomeContainer';
 
-interface CalculationResult {
+interface Product {
   name: string;
+  length: number;
+  width: number;
+  height: number;
+  weight: number;
+}
+
+interface CalculationResult {
   id: string;
+  product: Product;
 }
 
 interface StickStore {
@@ -18,9 +26,9 @@ interface StickStore {
   width: number;
   height: number;
   weight: number;
-  returnedCalculationResult: CalculationResult | null;
+  returnedCalculationResult: CalculationResult | null | undefined;
   fetchCalculation: () => void;
-  resetDimensions: () => void;
+  resetModal: () => void;
   openModal: () => void;
   closeModal: () => void;
   setLength: (num: number) => void;
@@ -36,23 +44,34 @@ const initialDimensions: Pick<StickStore, 'length' | 'width' | 'height' | 'weigh
   weight: 0,
 }
 
-export const useStickStore = create<StickStore>((set) => ({
+export const useStickStore = create<StickStore>((set, get) => ({
   ...initialDimensions,
   modalOpen: false,
   loading: false,
   name: '',
-  returnedCalculationResult: null,
+  returnedCalculationResult: undefined,
   fetchCalculation: () => {
+    set({ loading: true });
     axios.post('/graphql', {
-      query: CALCULATION_FROM_DIMENSIONS
+      query: calculationFromDimensionsQuery(get().length, get().width, get().height, get().weight)
     }).then((res) => {
-      console.log(res.data);
+      console.log(res);
+      const { data } = res.data;
+      if (data.calculationFromDimensions) {
+        set({ returnedCalculationResult: data.calculationFromDimensions as CalculationResult });
+      } else if (data.errors) {
+        console.error(data.errors);
+      } else {
+        set({ returnedCalculationResult: null });
+      }
     }).catch((err) => {
       console.error(err);
+    }).finally(() => {
+      set({ loading: false });
     })
   },
-  resetDimensions: () => {
-    set(initialDimensions);
+  resetModal: () => {
+    set({ ...initialDimensions, returnedCalculationResult: undefined });
   },
   openModal: () => set({ modalOpen: true }),
   closeModal: () => set({ modalOpen: false }),

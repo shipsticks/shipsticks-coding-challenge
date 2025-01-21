@@ -2,6 +2,8 @@
 
 module Types
   class Product < Types::BaseObject
+    field :id, ID, "The id", null: false
+
     field :name, String, "The name of this product", null: false
     field :length, Int, "Length of the product in inches", null: false
     field :width, Int, "Width of the product in inches", null: false
