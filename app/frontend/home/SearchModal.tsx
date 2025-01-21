@@ -37,7 +37,7 @@ const SearchModal: FC = () => {
                 Search for Product
               </Dialog.Title>
               <p className="mt-2 text-sm/6 text-white">
-                Enter your dimensions below to find the correct product.
+                Enter the dimensions of the contents below.
               </p>
               <form id="dimension-form" className="my-5">
                 <div className="mb-5">
