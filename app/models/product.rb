@@ -11,11 +11,6 @@ class Product
   has_many :calculation_results, class_name: 'CalculationResult', inverse_of: :product
 
   validates :name, :length, :width, :height, :weight, :product_type, presence: true
+  validates :name, uniqueness: true
   validates_numericality_of :length, :width, :height, :weight, greater_than: 0
-
-  def self.columns
-    self.fields.values.map do |field|
-      OpenStruct.new(name: field.name == '_id' ? 'id' : field.name, type: field.type.to_s, null: false, )
-    end
-  end
 end

@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { create } from 'zustand';
 
 import { CALCULATION_FROM_DIMENSIONS } from './graphql/queries/calculationFromDimensions';
+import HomeContainer from 'home/HomeContainer';
 
 interface CalculationResult {
   name: string;
@@ -20,6 +21,12 @@ interface StickStore {
   returnedCalculationResult: CalculationResult | null;
   fetchCalculation: () => void;
   resetDimensions: () => void;
+  openModal: () => void;
+  closeModal: () => void;
+  setLength: (num: number) => void;
+  setWidth: (num: number) => void;
+  setHeight: (num: number) => void;
+  setWeight: (num: number) => void;
 }
 
 const initialDimensions: Pick<StickStore, 'length' | 'width' | 'height' | 'weight'> = {
@@ -30,6 +37,7 @@ const initialDimensions: Pick<StickStore, 'length' | 'width' | 'height' | 'weigh
 }
 
 export const useStickStore = create<StickStore>((set) => ({
+  ...initialDimensions,
   modalOpen: false,
   loading: false,
   name: '',
@@ -46,13 +54,18 @@ export const useStickStore = create<StickStore>((set) => ({
   resetDimensions: () => {
     set(initialDimensions);
   },
-  ...initialDimensions
+  openModal: () => set({ modalOpen: true }),
+  closeModal: () => set({ modalOpen: false }),
+  setLength: (num: number) => set({ length: num }), // Could be much DRYer
+  setWidth: (num: number) => set({ width: num }),
+  setHeight: (num: number) => set({ height: num }),
+  setWeight: (num: number) => set({ weight: num }),
 }));
 
 const App: FC = () => {
   return (
     <div>
-      <h1>Hello, World!</h1>
+      <HomeContainer />
     </div>
 )};
 
