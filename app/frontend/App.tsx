@@ -51,6 +51,12 @@ export const useStickStore = create<StickStore>((set, get) => ({
   name: '',
   returnedCalculationResult: undefined,
   fetchCalculation: () => {
+    const form = document.querySelector('#dimension-form') as HTMLFormElement;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
     set({ loading: true });
     axios.post('/graphql', {
       query: calculationFromDimensionsQuery(get().length, get().width, get().height, get().weight)
@@ -79,6 +85,10 @@ export const useStickStore = create<StickStore>((set, get) => ({
   setWidth: (num: number) => set({ width: num }),
   setHeight: (num: number) => set({ height: num }),
   setWeight: (num: number) => set({ weight: num }),
+  // isFormValid: () => {
+  //   const { length, width, height, weight } = get();
+  //   return length > 0 && width > 0 && height > 0 && weight > 0;
+  // }
 }));
 
 const App: FC = () => {

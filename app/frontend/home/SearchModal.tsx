@@ -39,22 +39,22 @@ const SearchModal: FC = () => {
               <p className="mt-2 text-sm/6 text-white">
                 Enter your dimensions below to find the correct product.
               </p>
-              <form className="my-5">
+              <form id="dimension-form" className="my-5">
                 <div className="mb-5">
                   <label htmlFor="length-input" className="block mb-2 text-sm font-medium text-white">Length</label>
-                  <input onChange={(e) => {setLength(parseInt(e.target.value))}} value={length.toString()} type="number" id="length-input" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5" placeholder="Integer in inches" required />
+                  <input min="1" onChange={(e) => {setLength(parseInt(e.target.value))}} value={length.toString()} type="number" id="length-input" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5" placeholder="Integer in inches" required />
                 </div> 
                 <div className="mb-5">
                   <label htmlFor="width-input" className="block mb-2 text-sm font-medium text-white">Width</label>
-                  <input onChange={(e) => {setWidth(parseInt(e.target.value))}} value={width.toString()} type="number" id="width-input" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5" placeholder="Integer in inches" required />
+                  <input min="1" onChange={(e) => {setWidth(parseInt(e.target.value))}} value={width.toString()} type="number" id="width-input" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5" placeholder="Integer in inches" required />
                 </div> 
                 <div className="mb-5">
                   <label htmlFor="height-input" className="block mb-2 text-sm font-medium text-white">Height</label>
-                  <input onChange={(e) => {setHeight(parseInt(e.target.value))}} value={height.toString()} type="number" id="height-input" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5" placeholder="Integer in inches" required />
+                  <input min="1" onChange={(e) => {setHeight(parseInt(e.target.value))}} value={height.toString()} type="number" id="height-input" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5" placeholder="Integer in inches" required />
                 </div> 
                 <div className="mb-5">
                   <label htmlFor="weight-input" className="block mb-2 text-sm font-medium text-white">Weight</label>
-                  <input onChange={(e) => {setWeight(parseInt(e.target.value))}} value={weight.toString()} type="number" id="weight-input" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5" placeholder="Integer in pounds" required />
+                  <input min="1" onChange={(e) => {setWeight(parseInt(e.target.value))}} value={weight.toString()} type="number" id="weight-input" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5" placeholder="Integer in pounds" required />
                 </div> 
               </form>
               {
