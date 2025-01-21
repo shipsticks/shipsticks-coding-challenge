@@ -7,19 +7,21 @@ namespace :import do
 
     puts "Importing #{products.size} products..."
     products.each do |product|
-      puts "Importing #{product['name']}..."
-      pt = ProductType.find_or_create_by(name: product['type'])
+      begin
+        puts "Importing #{product['name']}..."
+        pt = ProductType.find_or_create_by(name: product['type'])
 
-      Product.create!(
-        name: product['name'],
-        product_type: pt,
-        length: product['length'],
-        width: product['width'],
-        height: product['height'],
-        weight: product['weight'],
-      )
-
-      puts "Imported #{product['name']} successfully."
+        Product.create!(
+          name: product['name'],
+          product_type: pt,
+          length: product['length'],
+          width: product['width'],
+          height: product['height'],
+          weight: product['weight'],
+        )
+      rescue
+        puts "Failed to import #{product['name']}"
+      end
     end
   end
 end
