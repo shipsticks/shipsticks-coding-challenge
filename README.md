@@ -8,15 +8,6 @@ Simple app that uses graphql to query for a suitable product for given content d
 ## Installation
 Please have docker installed to run app with a single command.
 
-## First Use
-In order to prep your db with relevant information, you'll want to run the product import rake command.
-
-```bash
-$ bin/dcexec rails import:products_json
-```
-
-This will provide both `Product` and `ProductType` data for you to begin with.
-
 ## Running the app
 With docker installed, docker-compose up should be all you need to run the app.
 ```bash
@@ -25,6 +16,15 @@ $ docker-compose up -d
 ```
 
 This will launch three containers (the rails api app, mongodb instance, and the vite dev server) in the default local ports (3000, 27107 and 3036 respectively). If you receive an error, make sure you don't have some other service running on one of these default ports.
+
+## First Use
+In order to prep your db with relevant information, you'll want to run the product import rake command.
+
+```bash
+$ bin/dcexec rails import:products_json
+```
+
+This will provide both `Product` and `ProductType` data for you to begin with.
 
 ## See it in Action
 Access the home page at http://localhost:3000.
